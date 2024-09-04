@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Input Validation Example</title>
+</head>
+<body>
+
+    <h2>Simple Input Validation</h2>
+    <form id="myForm">
+        <label for="name">Enter your name:</label>
+        <input type="text" id="name" name="name">
+        <button type="submit">Submit</button>
+    </form>
+
+    <p id="error-message" style="color:red;"></p>
+
+    <script>
+        document.getElementById("myForm").addEventListener("submit", function(event) {
+            event.preventDefault(); // Prevent form submission
+            
+            let nameInput = document.getElementById("name").value;
+            let errorMessage = document.getElementById("error-message");
+
+            // Regular expression to check if input contains only letters
+            let namePattern = /^[A-Za-z]+$/;
+
+            if (nameInput === "") {
+                errorMessage.textContent = "Error: Name cannot be empty.";
+            } else if (!namePattern.test(nameInput)) {
+                errorMessage.textContent = "Error: Name can only contain letters.";
+            } else {
+                errorMessage.textContent = ""; // Clear any previous error messages
+                alert("Input is valid!");
+            }
+        });
+    </script>
+
+</body>
+</html>
